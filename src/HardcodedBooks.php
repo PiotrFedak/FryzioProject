@@ -1,6 +1,6 @@
 <?php
 
-namespace HardcodedBooks;
+namespace Functions;
 
 class HardcodedBooks
 {

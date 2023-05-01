@@ -1,12 +1,12 @@
 <?php 
 
-namespace Librarian;
+namespace Classes;
 
 class Librarian{
     
-private string l_name;
-private string email;
-private int phone_number;
+private string $l_name;
+private string $email;
+private int $phone_number;
 
 function __construct(string $name,string $mail,int $phone){
     $this->l_name=$name;

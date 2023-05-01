@@ -1,10 +1,11 @@
 <?php 
 
-namespace Book_Borrow;
+
+namespace Functions;
 
 final class Book_Borrow{
 
-    private int date;
+    private int $date;
 
     public function __construct(int $date){
         

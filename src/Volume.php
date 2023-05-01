@@ -1,16 +1,16 @@
 <?php 
 
-namespace Volume;
 
+namespace Classes;
 
 abstract class Volume {
 
-   private string title;
-   private string author;
-   private int ISBN;
-   private string publisher;
-   private int publication_year;
-   private bool status;
+   private string $title;
+   private string $author;
+   private int $ISBN;
+   private string $publisher;
+   private int $publication_year;
+   private bool $status;
 
 
    function __construct(string $title,string $author, int $ISBN, string $publisher, int $publication_year, bool $status) {

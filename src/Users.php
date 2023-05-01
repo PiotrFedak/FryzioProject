@@ -1,20 +1,20 @@
 <?php 
 
-namespace Users;
+namespace Classes;
 
 
 abstract class Users {
 
-   private int User_id;
-   private string password;
-   private string email;
-   private bool account_status;
-   private int penalty_counter;
-   private int volume_counter;
-   private int max_volume;
+   private int $User_id;
+   private string $password;
+   private string $email;
+   private bool $account_status;
+   private int $penalty_counter;
+   private int $volume_counter;
+   const  max_volume=0;
 
 
-   function __construct(int $User_id,string $password, string $email, bool $account_status, int $penalty_counter, int $volume_counter, int $max_volume) {
+   function __construct(int $User_id,string $password, string $email, bool $account_status, int $penalty_counter, int $volume_counter) {
 
     $this ->User_id=$User_id;
     $this ->password=$password;
@@ -22,7 +22,6 @@ abstract class Users {
     $this ->account_status=$account_status;
     $this ->penalty_counter=$penalty_counter;
     $this ->volume_counter=$volume_counter;
-    $this ->max_volume=$max_volume;
    }
 
    public function Getemail() {
@@ -38,7 +37,7 @@ abstract class Users {
     }
     
     public function Setpassword(string $password ){
-        $this ->status = $password;
+        $this->password = $password;
     }
 
     public function GetAccountStatus() {
@@ -55,9 +54,22 @@ abstract class Users {
 
 
     public function Setpenalty_counter(int $penalty_counter) {
-            $this ->status = $penalty_counter;
+            $this ->penalty_counter = $penalty_counter;
+    }
+    
+    public function GetUserId() {
+        return $this->User_id;
     }
 
+    public function GetVolumeCounter() {
+        return $this->volume_counter;
+    }
+    public function SetVolumeCounter(int $n) {
+        $this->volume_counter+=$n;
+    }
+    public function GetMaxVolumine() {
+        return $this->max_volume;
+    }
 }
 
 ?>
