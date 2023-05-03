@@ -1,7 +1,7 @@
 <?php 
 
 
-namespace Classes;
+namespace PHP\Classes;
 
 abstract class Volume {
 

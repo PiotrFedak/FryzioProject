@@ -1,8 +1,8 @@
 <?php 
 
-namespace Classes\Users_class;
+namespace PHP\Classes;
 
-use Classes\Users;
+use PHP\Classes\Users;
 
 class Students extends Users {
     const max_volume=5;

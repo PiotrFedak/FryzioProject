@@ -1,7 +1,7 @@
 <?php 
 
 
-namespace Functions;
+namespace PHP\Functions;
 
 final class Book_Borrow{
 

@@ -1,6 +1,6 @@
 <?php 
 
-namespace Classes;
+namespace PHP\Classes;
 
 
 abstract class Users {
@@ -68,7 +68,7 @@ abstract class Users {
         $this->volume_counter+=$n;
     }
     public function GetMaxVolumine() {
-        return $this->max_volume;
+        return $this::max_volume;
     }
 }
 

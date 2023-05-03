@@ -1,9 +1,9 @@
 <?php 
 
-namespace Functions;
+namespace PHP\Functions;
 
-use Classes\Users;
-use Classes\Volume;
+use PHP\Classes\Users;
+use PHP\Classes\Volume;
 
 final class Book_Reservation{
     private Users $user;
@@ -31,8 +31,8 @@ final class Book_Reservation{
 
         if($account_status==1){
           if($volume_counter<$max_volume){
-            $this->SetDate();
-            echo("Ksiązka".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ".$this->date);
+            //$this->SetDate();
+            echo("Ksiązka".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ");//.$this->date);
 
           }
           else{

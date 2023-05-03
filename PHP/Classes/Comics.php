@@ -1,8 +1,8 @@
 <?php 
 
-namespace Classes\Volume_class;
+namespace PHP\Classes;
 
-use Classes\Volume;
+use PHP\Classes\Volume;
 
 class Comics extends Volume {
     private int $parts;
