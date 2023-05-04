@@ -12,11 +12,11 @@ interface GetVolume{
 }
 
 
-final class Book_Reservation implements GetVolume{
+final class Book_Reservations implements GetVolume{
     private Users $user;
     private Volume $volume;
-    private string $date;
-    private bool $status_reservation=false;
+    private int $date;
+    private bool $status_reservation=true;
 
     
     function __construct(Users $user, Volume $volume) {
@@ -42,14 +42,15 @@ final class Book_Reservation implements GetVolume{
             $this->SetDate();
             echo("Ksiązka".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ".$this->date);
             $this->status_reservation=true;
+            $this->volume->SetStatus($this->status_reservation);
 
           }
           else{
-            echo("Maksymalna ilość wypożyczonych książek");
+            echo("Maksymalna ilość wypożyczonych książek").PHP_EOL;
           }
         }
         else{
-          echo("Konto jest nie aktywne");
+          echo("Konto jest nie aktywne").PHP_EOL;
         }
 
         
@@ -70,7 +71,7 @@ final class Book_Reservation implements GetVolume{
       }  
 
       public function SetDate(){
-        $current_date = date('d-m-Y');
+        $current_date = date('dmY');
         $this ->date = $current_date;
     }
 

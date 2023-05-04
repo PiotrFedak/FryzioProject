@@ -5,19 +5,21 @@ namespace PHP\Functions;
 use PHP\Classes\Users;
 use PHP\Classes\Librarian;
 use PHP\Classes\Volume;
-use PHP\Functions\Book_Reservation;
-use PHP\Interface\GetVolume;
+use PHP\Functions\Book_Reservations;
+use PHP\Functions\GetVolume;
 
-final class BookBorrow{
+
+final class Book_Borrow implements GetVolume{
 
     private int $date_borrow;
     private Users $user;
     private Volume $volume;
     private Librarian $librarian;
-    private Book_Reservation $book_reservation;
+    private Book_Reservations $book_reservation;
+    private int $date;
 
 
-    public function __construct(Users $user,Librarian $librarian,Book_Reservation $book_reservation){
+    public function __construct(Users $user,Librarian $librarian,Book_Reservations $book_reservation){
         $this->user=$user;
         $this->librarian=$librarian;
         $this->book_reservation=$book_reservation;
@@ -42,30 +44,36 @@ final class BookBorrow{
             $this->SetDate();
             $this->user->SetVolumeCounter(1);
             echo("Ksiązka".$title." ".$author." ".$ISBN." została wyporzyczona przez użytkonwika ".$user_id." pod czas pracy ".$l_name." w dniu ".$this->date);
-            }else{
-                echo("Minał czas rezerwacji");
+            }
+            else{
+                echo("Minał czas rezerwacji").PHP_EOL;
             }
 
           }
           else{
-            echo("Maksymalna ilość wypożyczonych książek");
+            echo("Maksymalna ilość wypożyczonych książek").PHP_EOL;
           }
         }
         else{
-          echo("Konto jest nie aktywne");
+          echo("Konto jest nie aktywne").PHP_EOL;
         }
 
         
         }
 
 
-    public function GetDate(){
-        return $this->account_status;
-    }
+    
 
     public function SetDate(){
-        $current_date = date('d-m-Y');
-        $this ->date = $current_date;
+        $current_date = date('dmY');
+        $this->date = $current_date;
+    }
+    public function GetVolume(){
+      return $this->volume;
+    }  
+
+    public function GetDate(){
+      return $this->date;
     }
 
 }
