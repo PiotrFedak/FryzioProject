@@ -67,7 +67,7 @@ abstract class Users {
     public function SetVolumeCounter(int $n) {
         $this->volume_counter+=$n;
     }
-    public function GetMaxVolumine() {
+    public function GetMaxVolume() {
         return $this::max_volume;
     }
 }

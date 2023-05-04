@@ -5,11 +5,19 @@ namespace PHP\Functions;
 use PHP\Classes\Users;
 use PHP\Classes\Volume;
 
-final class Book_Reservation{
+
+interface GetVolume{
+  public function getVolume();
+
+}
+
+
+final class Book_Reservation implements GetVolume{
     private Users $user;
     private Volume $volume;
-    private int $date;
-    
+    private string $date;
+    private bool $status_reservation=false;
+
     
     function __construct(Users $user, Volume $volume) {
 
@@ -23,7 +31,7 @@ final class Book_Reservation{
         $email=$this->user->Getemail();
         $account_status=$this->user->GetAccountStatus();
         $volume_counter=$this->user->GetVolumeCounter();
-        $max_volume=$this->user->GetMaxVolumine();
+        $max_volume=$this->user->GetMaxVolume();
         $title=$this->volume->GetTitle();
         $author=$this->volume->GetAuthor();
         $ISBN=$this->volume->GetISBN();
@@ -31,8 +39,9 @@ final class Book_Reservation{
 
         if($account_status==1){
           if($volume_counter<$max_volume){
-            //$this->SetDate();
-            echo("Ksiązka".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ");//.$this->date);
+            $this->SetDate();
+            echo("Ksiązka".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ".$this->date);
+            $this->status_reservation=true;
 
           }
           else{
@@ -47,9 +56,21 @@ final class Book_Reservation{
 
       } 
 
+      public function GetReservationStatus(){
+          $this->status_reservation;
+      }
+
+      public function GetReservationDate(){
+          return $this->date;
+      }
+
+
+      public function GetVolume(){
+        return $this->volume;
+      }  
+
       public function SetDate(){
-        $current_date = date('Y-m-d');
-        echo $current_date;
+        $current_date = date('d-m-Y');
         $this ->date = $current_date;
     }
 

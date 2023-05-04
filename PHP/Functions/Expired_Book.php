@@ -1,6 +1,6 @@
 <?php 
 
-namespace Functions;
+namespace PHP\Functions;
 
 
     

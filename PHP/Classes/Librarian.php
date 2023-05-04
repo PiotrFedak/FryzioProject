@@ -15,7 +15,9 @@ function __construct(string $name,string $mail,int $phone){
 }
 
 
-
+public function getLName(){
+    return $this->l_name;
+}
 public function Getemail() {
     return  $this->email;
 }
