@@ -1,6 +1,8 @@
 <?php 
 
 namespace PHP\Functions;
+
+use PHP\Classes\Date;
 use PHP\Classes\Users;
 use PHP\Classes\Librarian;
 use PHP\Classes\Volume;
@@ -12,39 +14,107 @@ final class Book_Return{
     private Users $users;
     private Librarian $librarian;
     private Volume $volume;
-    private int $date;
+    private Date $date;
+    private Date $datebook;
+    private bool $is_expired;
 
-    public function __construct(Book_Borrow $borrow, Users $user, Librarian $librarian){
+    public function __construct(Book_Borrow $borrow, Users $user, Librarian $librarian, Date $d){
         $this->book_borrow = $borrow;
         $this->users = $user;
         $this->librarian = $librarian;
         $this->volume=$this->book_borrow->GetVolume();
+        $this->datebook=$this->book_borrow->GetDateBorrow();
+        $this->date=$d;
     }
 
     public function ReturnBook(){
         $user_id=$this->users->GetUserId();
         $ISBN=$this->volume->GetISBN();
-        $date=$this->book_borrow->GetDate();
         $librarian=$this->librarian->GetLName();
-        if($this->date>1){
+        $this->Checkifexpired();
+        if($this->is_expired==0){
             $this->users->SetVolumeCounter(-1);
             $this->volume->SetStatus(true);
-            echo("Użytkownik ".$user_id." oddał książkę ".$ISBN." w terminie dnia".$date." zakartekowane przez ".$librarian).PHP_EOL;
+            echo("Użytkownik ".$user_id." oddał książkę ".$ISBN." w terminie dnia ".$this->date->getDay()." ".$this->date->GetMonth()." ".$this->date->GetYear()." zakartekowane przez ".$librarian).PHP_EOL;
         }
         else{
             echo("Ksiązka po terminie").PHP_EOL;
         }
+        
+        
+    }
+
+    public function Checkifexpired(){
+        $day=$this->datebook->getDay();
+        $month=$this->datebook->GetMonth();
+        $year=$this->datebook->GetYear();
+        // Do sprawdzenia czy git z secenariuszem 
+        //
+        //
+        //
+        //
+        if($year%4==0){
+            if($month==2){
+                if($day+20>29){
+                    $day=$day+20-29;
+                    $month++;
+                }
+            }
+            else if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
+                if($day+20>31){
+                    $day=$day+20-31;
+                    $month++;
+                }
+                if($month>12){
+                    $month==1;
+                    $year++;
+                }
+
+            }
+            else{
+                if($day+20>30){
+                    $day=$day+20-30;
+                    $month++;
+                }
+
+            }
+        }
+        else{
+            if($day+20>28){
+                $day=$day+20-28;
+                $month++;
+            }
+        if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
+            if($day+20>31){
+                $day=$day+20-31;
+                $month++;
+            }
+            else if($month>12){
+                $month==1;
+                $year++;
+            }
+            else{
+                if($day+20>30){
+                    $day=$day+20-30;
+                    $month++;
+                 }
+
+                }
+
+            }
+        }
+        $dayreturn=$this->date->getDay();
+        $monthreturn=$this->date->GetMonth();
+        $yearreturn=$this->date->GetYear();
+        if($dayreturn<=$day&&$monthreturn<=$month&&$yearreturn<=$year){
+            $this->is_expired=false;
+        }
+        else{
+            $this->is_expired=true;
+        }
+
+    }
     
-        
-        
-        
-    }
-
-    public function GetDate(){
-        $current_date = date('dmY');
-        $this->date = $current_date;
-    }
-
 
 
 
