@@ -9,7 +9,9 @@ use PHP\Functions\Book_Reservations;
 use PHP\Functions\Book_Return;
 
 require "./vendor/autoload.php";
-$date=new Date;
+$date=new Date();
+$date1=new Date();
+$date2=new Date();
 
 $user=new Students(1,"123","jas@gmail.com",true,0,0);
 $book=new Books("Ania i jaś","ewa kwrac",12312312,"erere",1222,true);
@@ -22,14 +24,14 @@ $rezerwacja->BookReservation();
 echo("").PHP_EOL;
 
 
-
-$wypozyczenie=new Book_Borrow($user,$bibliotekarz,$rezerwacja,$date);
+$date1->Setdate(30,5,2023);
+$wypozyczenie=new Book_Borrow($user,$bibliotekarz,$rezerwacja,$date1);
 $wypozyczenie->BookBorrow();
 echo("").PHP_EOL;
 
 echo("").PHP_EOL;
-$date->SetYear(2027);
-$oddanie=new Book_Return($wypozyczenie,$user,$bibliotekarz,$date);
+$date2->Setdate(2,6,2023);
+$oddanie=new Book_Return($wypozyczenie,$user,$bibliotekarz,$date2);
 $oddanie->ReturnBook();
 echo("").PHP_EOL;
 

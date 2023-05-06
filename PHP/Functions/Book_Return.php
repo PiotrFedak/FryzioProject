@@ -53,16 +53,17 @@ final class Book_Return{
         //
         //
         //
+        $day+=20;
         if($year%4==0){
             if($month==2){
-                if($day+20>29){
-                    $day=$day+20-29;
+                if($day>29){
+                    $day=$day-29;
                     $month++;
                 }
             }
             else if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
-                if($day+20>31){
-                    $day=$day+20-31;
+                if($day>31){
+                    $day=$day-31;
                     $month++;
                 }
                 if($month>12){
@@ -72,45 +73,43 @@ final class Book_Return{
 
             }
             else{
-                if($day+20>30){
-                    $day=$day+20-30;
+                if($day>30){
+                    $day=$day-30;
                     $month++;
                 }
 
             }
         }
         else{
-            if($day+20>28){
-                $day=$day+20-28;
+            if($day>28 && $month==2){
+                $day=$day-28;
                 $month++;
             }
-        if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
-            if($day+20>31){
-                $day=$day+20-31;
+            else if($month==1||$month==3||$month==5||$month==7||$month==8||$month==10||$month==12){
+            if($day>31){
+                $day=$day-31;
                 $month++;
             }
-            else if($month>12){
+             if($month>12){
                 $month==1;
                 $year++;
             }
+            }
             else{
-                if($day+20>30){
-                    $day=$day+20-30;
+                if($day>30){
+                    $day=$day-30;
                     $month++;
                  }
 
-                }
-
             }
-        }
         $dayreturn=$this->date->getDay();
         $monthreturn=$this->date->GetMonth();
         $yearreturn=$this->date->GetYear();
-        if($dayreturn<=$day&&$monthreturn<=$month&&$yearreturn<=$year){
-            $this->is_expired=false;
+        if(($dayreturn>$day&&$month==$monthreturn&&$year==$yearreturn)||($dayreturn<=$day&&$month<$monthreturn&&$year==$yearreturn)){
+            $this->is_expired=true;
         }
         else{
-            $this->is_expired=true;
+            $this->is_expired=false;
         }
 
     }
@@ -118,7 +117,7 @@ final class Book_Return{
 
 
 
-
+    }
 }
 
 

@@ -30,6 +30,12 @@ public function SetYear(int $year){
     $this->year=$year;
 }
 
+public function SetDate(int $d,int $m,int $y){
+    $this->day=$d;
+    $this->month=$m;
+    $this->year=$y;
+}
+
 }
 
 

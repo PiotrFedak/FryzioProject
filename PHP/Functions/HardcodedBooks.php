@@ -2,9 +2,8 @@
 
 namespace PHP\Functions;
 
-class HardcodedBooks
-{
-    $books_title = array(
+class HardcodedBooks{
+    const books_title = array(
     "Władca Pierścieni",
     "Harry Potter i Kamień Filozoficzny",
     "Metro 2033",
