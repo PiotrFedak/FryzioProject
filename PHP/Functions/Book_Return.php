@@ -39,6 +39,8 @@ final class Book_Return{
         }
         else{
             echo("Ksiązka po terminie").PHP_EOL;
+            $expired= new Expired_Book($this->users);
+            $expired->ReturnExpiredBook();
         }
         
         

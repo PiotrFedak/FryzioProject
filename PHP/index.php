@@ -24,7 +24,7 @@ $rezerwacja->BookReservation();
 echo("").PHP_EOL;
 
 
-$date1->Setdate(30,5,2023);
+$date1->Setdate(1,5,2023);
 $wypozyczenie=new Book_Borrow($user,$bibliotekarz,$rezerwacja,$date1);
 $wypozyczenie->BookBorrow();
 echo("").PHP_EOL;
