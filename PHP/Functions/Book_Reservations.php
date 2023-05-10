@@ -40,15 +40,21 @@ final class Book_Reservations implements GetVolume{
         $status=$this->volume->GetStatus();
 
         if($account_status==1){
-          if($volume_counter<$max_volume){
-            echo("Ksiązka ".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ".$this->date->getDay()." ".$this->date->GetMonth()." ".$this->date->GetYear()).PHP_EOL;
-            $this->status_reservation=true;
-            $this->volume->SetStatus($this->status_reservation);
-
+          if($status==1){
+            if($volume_counter<$max_volume){
+              echo("Ksiązka ".$title." ".$author." ".$ISBN." została zaerzerowana dla użytkonwika ".$user_id." o emailu ".$email." w dniu ".$this->date->getDay()." ".$this->date->GetMonth()." ".$this->date->GetYear()).PHP_EOL;
+              $this->status_reservation=true;
+              $this->volume->SetStatus($this->status_reservation);
+  
+            }
+            else{
+              echo("Maksymalna ilość wypożyczonych książek").PHP_EOL;
+            }
           }
           else{
-            echo("Maksymalna ilość wypożyczonych książek").PHP_EOL;
-          }
+                      echo("Ksiązka NIE DOSTPĘNA ").PHP_EOL;
+                    }
+         
         }
         else{
           echo("Konto jest nie aktywne").PHP_EOL;
