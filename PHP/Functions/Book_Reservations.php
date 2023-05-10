@@ -28,6 +28,14 @@ final class Book_Reservations implements GetVolume{
         
        }
 
+       public function DeleteBookReservation(){
+        $this->user=null;
+        $this->volume=null;
+        $this->date=null;
+        $this->status_reservation=null;
+        echo("Usunięto rezerwacje").PHP_EOL;
+
+       }
       public function BookReservation(){
         $user_id=$this->user->GetUserId();
         $email=$this->user->Getemail();
@@ -76,6 +84,41 @@ final class Book_Reservations implements GetVolume{
       public function GetVolume(){
         return $this->volume;
       }  
+
+
+
+
+      public function BookReservationTEST(){
+        $user_id=$this->user->GetUserId();
+        $email=$this->user->Getemail();
+        $account_status=$this->user->GetAccountStatus();
+        $volume_counter=$this->user->GetVolumeCounter();
+        $max_volume=$this->user->GetMaxVolume();
+        $title=$this->volume->GetTitle();
+        $author=$this->volume->GetAuthor();
+        $ISBN=$this->volume->GetISBN();
+        $status=$this->volume->GetStatus();
+
+        if($account_status==1){
+          if($status==1){
+            if($volume_counter<$max_volume){
+              $this->status_reservation=true;
+              $this->volume->SetStatus($this->status_reservation);
+  
+            }
+            else{
+            }
+          }
+          else{
+                    }
+         
+        }
+        else{
+        }
+
+        
+
+      } 
 
 }
 

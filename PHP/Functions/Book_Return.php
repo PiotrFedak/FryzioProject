@@ -17,6 +17,7 @@ final class Book_Return{
     private Date $date;
     private Date $datebook;
     private bool $is_expired;
+    private int $day_after_expired;
 
     public function __construct(Book_Borrow $borrow, Users $user, Librarian $librarian, Date $d){
         $this->book_borrow = $borrow;
@@ -39,7 +40,7 @@ final class Book_Return{
         }
         else{
             echo("Ksiązka po terminie").PHP_EOL;
-            $expired= new Expired_Book($this->users);
+            $expired= new Expired_Book($this->users,$this->day_after_expired);
             $expired->ReturnExpiredBook();
         }
         
@@ -109,6 +110,7 @@ final class Book_Return{
         $yearreturn=$this->date->GetYear();
         if(($dayreturn>$day&&$month==$monthreturn&&$year==$yearreturn)||($dayreturn<=$day&&$month<$monthreturn&&$year==$yearreturn)){
             $this->is_expired=true;
+            $this->day_after_expired=$dayreturn-$day;
         }
         else{
             $this->is_expired=false;
