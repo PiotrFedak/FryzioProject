@@ -145,10 +145,15 @@ if($scenariusz==3){
         $book=new Books("W Pustyni i w puszczy","Henryk Sienkiewicz",12312312,"Książkix",2137,true);
         echo("").PHP_EOL;
         $date2->Setdate(15,2,2023);
-        $rezerwacja=new Book_Reservations($user,$book,$date2);
+        $rezerwacja=null;
+        if($rezerwacja==null){
+            echo("Nie dokonano rezerwacji").PHP_EOL;
+        }
+        else{
         $wypozyczenie=new Book_Borrow($user,$bibliotekarz,$rezerwacja,$date2);
         $wypozyczenie->BookBorrow();
         echo("").PHP_EOL;
+        }
     }
 
 }
