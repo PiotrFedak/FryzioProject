@@ -51,11 +51,7 @@ final class Book_Return{
         $day=$this->datebook->getDay();
         $month=$this->datebook->GetMonth();
         $year=$this->datebook->GetYear();
-        // Do sprawdzenia czy git z secenariuszem 
-        //
-        //
-        //
-        //
+    
         $day+=20;
         if($year%4==0){
             if($month==2){
